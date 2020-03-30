@@ -8,7 +8,7 @@
     <meta name="description" content="" />
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors" />
     <meta name="generator" content="Jekyll v3.8.6" />
-    <title>Kalpit Machhi</title>
+    <title>Kalpit's Blog</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/album/" />
 
@@ -56,43 +56,30 @@
                 <div class="navbar-nav ml-auto">
                     <a class="nav-item nav-link" href="http://twitter.com/kalpit_07">Twitter</a>
                     <a class="nav-item nav-link" href="{% static 'Resume.pdf' %}">Resume</a>
-                    <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
+                    <a class="nav-item nav-link active" href="{% url 'allblogs' %}">Blog</a>
                 </div>
             </div>
         </nav>
     </header>
 
     <main role="main">
-        <section class="jumbotron text-center">
-            <div class="container">
-                <h1>Hi, I'm Kalpit.</h1>
-                <p class="lead text-muted">
-                    Hey, I'm a Django developer. It's a thrill of handling the requests that the people want !
-                </p>
-                <p>
-                    <a href="mailto:kalpitmachhi@gmail.com" class="btn btn-primary my-2">Email Me</a>
-                </p>
-                <img src="{% static 'Kalpit.jpg' %} " height="400" width="400">
-            </div>
-        </section>
+        <div class="container">
+            <h1 class="text-center pt-3">Welcome to Kalpit's Blog</h1>
+            <br />
+            <br />
+            <h2>Latest Posts</h2>
+            <hr />
 
-        <div class="album py-5 bg-light">
-            <div class="container">
-                <div class="row">
-                    {% for job in jobs.all %}
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm">
-                            <img class="card-img-top" src="{{ job.image.url }}" />
-                            <div class="card-body">
-                                <p class="card-text">
-                                    {{ job.summary }}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
+            {% for blog in blogs.all %}
+            <a href="{% url 'detail' blog.id %}"><h3>{{ blog.title }}</h3></a>
+            {{ blog.pub_date_pretty }}
+            <br />
+            <img src="{{ blog.image.url }}" height="200" width="350">
+            <br />
+            {{ blog.summary }}
+            <br />
+            <br />
+            {% endfor %}
         </div>
     </main>
 
